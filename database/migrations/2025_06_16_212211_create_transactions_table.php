@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
+            $table->string('code');
+            $table->dateTime('date')->useCurrent();
+            $table->bigInteger('total')->default(0);
+            $table->enum('status', ['pending', 'done', 'cancel'])->default('pending');
             // $table->timestamps();
         });
     }

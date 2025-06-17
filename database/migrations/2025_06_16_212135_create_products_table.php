@@ -15,7 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnUpdate();
             $table->string('name', 100);
-            $table->string('description');
+            $table->string('slug', 100);
+            $table->string('image')->nullable();
+            $table->integer('price')->default(0);
+            $table->integer('stock')->default(0);
+            $table->boolean('is_available')->default(true);
+            $table->string('description')->nullable();
             // $table->timestamps();
         });
     }
