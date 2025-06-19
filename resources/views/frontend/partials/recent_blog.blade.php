@@ -16,8 +16,7 @@
                 <article class="post-item card border-0 shadow-sm p-3">
                     <div class="image-holder zoom-effect">
                         <a href="#">
-                            <img src="{{ asset('frontend/images/post-thumb-1.jpg') }}" alt="post"
-                                class="card-img-top">
+                            <img src="{{ asset('fe/images/post-thumb-1.jpg') }}" alt="post" class="card-img-top">
                         </a>
                     </div>
                     <div class="card-body">
@@ -44,8 +43,7 @@
                 <article class="post-item card border-0 shadow-sm p-3">
                     <div class="image-holder zoom-effect">
                         <a href="#">
-                            <img src="{{ asset('frontend/images/post-thumb-2.jpg') }}" alt="post"
-                                class="card-img-top">
+                            <img src="{{ asset('fe/images/post-thumb-2.jpg') }}" alt="post" class="card-img-top">
                         </a>
                     </div>
                     <div class="card-body">
@@ -72,8 +70,7 @@
                 <article class="post-item card border-0 shadow-sm p-3">
                     <div class="image-holder zoom-effect">
                         <a href="#">
-                            <img src="{{ asset('frontend/images/post-thumb-3.jpg') }}" alt="post"
-                                class="card-img-top">
+                            <img src="{{ asset('fe/images/post-thumb-3.jpg') }}" alt="post" class="card-img-top">
                         </a>
                     </div>
                     <div class="card-body">

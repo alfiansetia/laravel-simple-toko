@@ -2,64 +2,97 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TransactionStatus;
 use App\Models\Cart;
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CartController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $carts = Cart::query()
+            ->with('product.category')
+            ->where('user_id', auth()->id())
+            ->get();
+        return view('frontend.cart', compact('carts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'product_id' => 'required|exists:products,id'
+        ]);
+        $oncart = Cart::where('product_id', $request->product_id)->first();
+        if ($oncart) {
+            $cart = $oncart->update([
+                'user_id'       => auth()->id(),
+                'product_id'    => $request->product_id,
+                'qty'           => $oncart->qty + 1
+            ]);
+        } else {
+            $cart = Cart::create([
+                'user_id'       => auth()->id(),
+                'product_id'    => $request->product_id,
+                'qty'           => 1
+            ]);
+        }
+        return redirect()->back()->with('success', 'Success Add to cart!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cart $cart)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Cart $cart)
     {
-        //
+        $cart->delete();
+        return redirect()->back()->with('success', 'Success Delete from cart!');
+    }
+
+    public function checkout()
+    {
+        // 
+        $user = auth()->user();
+        $oncart = $user->carts;
+        if ($user->carts()->count() > 0) {
+            $total = 0;
+            foreach ($oncart as $key => $item) {
+                $total += ($item->qty * $item->product->price);
+            }
+            $trx = Transaction::create([
+                'code'      => strtoupper(Str::random(8)),
+                'date'      => date('Y-m-d H:i:s'),
+                'user_id'   => $user->id,
+                'total'     => $total,
+                'status'    => TransactionStatus::PENDING,
+
+            ]);
+
+            foreach ($oncart as $key => $item) {
+                TransactionDetail::create([
+                    'transaction_id'    => $trx->id,
+                    'product_id'        => $item->product_id,
+                    'price'             => $item->product->price,
+                    'qty'               => $item->qty,
+                ]);
+            }
+            $user->carts()->delete();
+
+            return redirect()->back()->with('success', 'Success create Order!');
+        } else {
+            return redirect()->back()->with('error', 'Empty Cart!');
+        }
     }
 }

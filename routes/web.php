@@ -1,13 +1,25 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\FeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', [FeController::class, 'index'])->name('fe.index');
+Route::get('profile', [FeController::class, 'profile'])->name('fe.profile.index');
+Route::get('transaction/{transaction:code}', [FeController::class, 'transaction'])->name('fe.transaction.detail');
+Route::get('carts', [CartController::class, 'index'])->name('fe.cart.index');
+Route::post('carts', [CartController::class, 'store'])->name('fe.cart.store');
+Route::delete('carts/{cart}', [CartController::class, 'destroy'])->name('fe.cart.destroy');
+Route::post('checkout', [CartController::class, 'checkout'])->name('fe.cart.checkout');
+
+Route::get('checkout', function () {
+    return redirect()->route('fe.cart.index')->with('error', 'Not Allowed!');
 });
 
 Auth::routes();
+Route::get('logout', [LoginController::class, 'logout']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

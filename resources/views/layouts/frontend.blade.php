@@ -15,14 +15,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/vendor.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('fe/css/vendor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('fe/style.css') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
+    @stack('css')
 
 </head>
 
@@ -30,6 +34,11 @@
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <defs>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="info" viewBox="0 0 24 24">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                <path
+                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+            </symbol>
             <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
                 <path fill="currentColor"
                     d="M12 19a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm5 0a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm0-4a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm-5 0a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm7-12h-1V2a1 1 0 0 0-2 0v1H8V2a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3Zm1 17a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9h16Zm0-11H4V6a1 1 0 0 1 1-1h1v1a1 1 0 0 0 2 0V5h8v1a1 1 0 0 0 2 0V5h1a1 1 0 0 1 1 1ZM7 15a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm0 4a1 1 0 1 0-1-1a1 1 0 0 0 1 1Z" />
@@ -37,6 +46,10 @@
             <symbol xmlns="http://www.w3.org/2000/svg" id="arrow-right" viewBox="0 0 24 24">
                 <path fill="currentColor"
                     d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="arrow-left" viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
             </symbol>
             <symbol xmlns="http://www.w3.org/2000/svg" id="category" viewBox="0 0 24 24">
                 <path fill="currentColor"
@@ -97,49 +110,7 @@
         </div>
     </div>
 
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart"
-        aria-labelledby="My Cart">
-        <div class="offcanvas-header justify-content-center">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="order-md-last">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-primary">Your cart</span>
-                    <span class="badge bg-primary rounded-pill">3</span>
-                </h4>
-                <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Growers cider</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$12</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Fresh grapes</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$8</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Heinz tomato ketchup</h6>
-                            <small class="text-body-secondary">Brief description</small>
-                        </div>
-                        <span class="text-body-secondary">$5</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (USD)</span>
-                        <strong>$20</strong>
-                    </li>
-                </ul>
-
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-            </div>
-        </div>
-    </div>
+    @include('components.cart')
 
     <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch"
         aria-labelledby="Search">
@@ -151,7 +122,7 @@
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-primary">Search</span>
                 </h4>
-                <form role="search" action="index.html" method="get" class="d-flex mt-3 gap-0">
+                <form role="search" action="" method="get" class="d-flex mt-3 gap-0">
                     <input class="form-control rounded-start rounded-0 bg-light" type="email"
                         placeholder="What are you looking for?" aria-label="What are you looking for?">
                     <button class="btn btn-dark rounded-end rounded-0" type="submit">Search</button>
@@ -162,31 +133,42 @@
 
     @include('components.header')
 
-    @include('frontend.banner')
-
-    @include('frontend.category')
-    @include('frontend.newly')
-    @include('frontend.trending')
-    @include('frontend.promo')
-    @include('frontend.best')
-    @include('frontend.discount')
-    @include('frontend.popular')
-    @include('frontend.arrived')
-    @include('frontend.recent_blog')
-    @include('frontend.info')
-    @include('frontend.other')
-
+    @yield('content')
 
 
 
     @include('components.footer')
-    <script src="{{ asset('frontend/js/jquery-1.11.0.min.js') }}"></script>
+
+
+    <script src="{{ asset('fe/js/jquery-1.11.0.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
-    <script src="{{ asset('frontend/js/plugins.js') }}"></script>
-    <script src="{{ asset('frontend/js/script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+    <script src="{{ asset('fe/js/plugins.js') }}"></script>
+    <script src="{{ asset('fe/js/script.js') }}"></script>
+
+    @stack('js')
+
+    @if (session()->has('success'))
+        <script>
+            $(document).ready(function() {
+                toastr.success('{{ session('success') }}', 'SUCCESS!');
+            })
+        </script>
+    @endif
+
+    @if (session()->has('error'))
+        <script>
+            $(document).ready(function() {
+                toastr.error('{{ session('error') }}', 'FAILED!');
+            })
+        </script>
+    @endif
 </body>
 
 </html>

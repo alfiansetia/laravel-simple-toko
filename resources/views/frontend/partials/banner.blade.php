@@ -1,5 +1,5 @@
 <section class="py-3"
-    style="background-image: url('{{ asset('frontend/images/background-pattern.jpg') }}');background-repeat: no-repeat;background-size: cover;">
+    style="background-image: url('{{ asset('fe/images/background-pattern.jpg') }}');background-repeat: no-repeat;background-size: cover;">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -23,8 +23,7 @@
                                                 Now</a>
                                         </div>
                                         <div class="img-wrapper col-md-5">
-                                            <img src="{{ asset('frontend/images/product-thumb-1.png') }}"
-                                                class="img-fluid">
+                                            <img src="{{ asset('fe/images/product-thumb-1.png') }}" class="img-fluid">
                                         </div>
                                     </div>
                                 </div>
@@ -41,8 +40,7 @@
                                                 Collection</a>
                                         </div>
                                         <div class="img-wrapper col-md-5">
-                                            <img src="{{ asset('frontend/images/product-thumb-1.png') }}"
-                                                class="img-fluid">
+                                            <img src="{{ asset('fe/images/product-thumb-1.png') }}" class="img-fluid">
                                         </div>
                                     </div>
                                 </div>
@@ -59,8 +57,7 @@
                                                 Collection</a>
                                         </div>
                                         <div class="img-wrapper col-md-5">
-                                            <img src="{{ asset('frontend/images/product-thumb-2.png') }}"
-                                                class="img-fluid">
+                                            <img src="{{ asset('fe/images/product-thumb-2.png') }}" class="img-fluid">
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +69,7 @@
                     </div>
 
                     <div class="banner-ad bg-success-subtle block-2"
-                        style="background:url('{{ asset('frontend/images/ad-image-1.png') }}') no-repeat;background-position: right bottom">
+                        style="background:url('{{ asset('fe/images/ad-image-1.png') }}') no-repeat;background-position: right bottom">
                         <div class="row banner-content p-5">
 
                             <div class="content-wrapper col-md-7">
@@ -88,7 +85,7 @@
                     </div>
 
                     <div class="banner-ad bg-danger block-3"
-                        style="background:url('{{ asset('frontend/images/ad-image-2.png') }}') no-repeat;background-position: right bottom">
+                        style="background:url('{{ asset('fe/images/ad-image-2.png') }}') no-repeat;background-position: right bottom">
                         <div class="row banner-content p-5">
 
                             <div class="content-wrapper col-md-7">

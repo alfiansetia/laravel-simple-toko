@@ -28,7 +28,7 @@
                             <div class="card mb-3 p-3 rounded-4 shadow border-0">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ asset('frontend/images/product-thumb-11.jpg') }}"
+                                        <img src="{{ asset('fe/images/product-thumb-11.jpg') }}"
                                             class="img-fluid rounded" alt="Card title">
                                     </div>
                                     <div class="col-md-8">
@@ -44,7 +44,7 @@
                             <div class="card mb-3 p-3 rounded-4 shadow border-0">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ asset('frontend/images/product-thumb-12.jpg') }}"
+                                        <img src="{{ asset('fe/images/product-thumb-12.jpg') }}"
                                             class="img-fluid rounded" alt="Card title">
                                     </div>
                                     <div class="col-md-8">
@@ -60,7 +60,7 @@
                             <div class="card mb-3 p-3 rounded-4 shadow border-0">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ asset('frontend/images/product-thumb-13.jpg') }}"
+                                        <img src="{{ asset('fe/images/product-thumb-13.jpg') }}"
                                             class="img-fluid rounded" alt="Card title">
                                     </div>
                                     <div class="col-md-8">
@@ -76,7 +76,7 @@
                             <div class="card mb-3 p-3 rounded-4 shadow border-0">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ asset('frontend/images/product-thumb-14.jpg') }}"
+                                        <img src="{{ asset('fe/images/product-thumb-14.jpg') }}"
                                             class="img-fluid rounded" alt="Card title">
                                     </div>
                                     <div class="col-md-8">
@@ -92,7 +92,7 @@
                             <div class="card mb-3 p-3 rounded-4 shadow border-0">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ asset('frontend/images/product-thumb-11.jpg') }}"
+                                        <img src="{{ asset('fe/images/product-thumb-11.jpg') }}"
                                             class="img-fluid rounded" alt="Card title">
                                     </div>
                                     <div class="col-md-8">
@@ -108,7 +108,7 @@
                             <div class="card mb-3 p-3 rounded-4 shadow border-0">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ asset('frontend/images/product-thumb-12.jpg') }}"
+                                        <img src="{{ asset('fe/images/product-thumb-12.jpg') }}"
                                             class="img-fluid rounded" alt="Card title">
                                     </div>
                                     <div class="col-md-8">

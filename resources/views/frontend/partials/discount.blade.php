@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <div class="bg-secondary py-5 my-5 rounded-5"
-            style="background: url('{{ asset('frontend/images/bg-leaves-img-pattern.png') }}') no-repeat;">
+            style="background: url('{{ asset('fe/images/bg-leaves-img-pattern.png') }}') no-repeat;">
             <div class="container my-5">
                 <div class="row">
                     <div class="col-md-6 p-5">

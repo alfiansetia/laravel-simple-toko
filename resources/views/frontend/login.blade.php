@@ -16,36 +16,20 @@
                                 posuere maecenas. At tellus ut nunc amet vel egestas.</p>
                         </div>
                         <div class="col-md-6 p-5">
-                            <form method="POST" action="{{ route('login') }}">
-                                @csrf
+                            <form>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email"
-                                        class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                        name="email" id="email" placeholder="abc@mail.com" required autofocus
-                                        autocomplete="email">
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input type="email" class="form-control form-control-lg" name="email" id="email"
+                                        placeholder="abc@mail.com">
                                 </div>
                                 <div class="mb-4">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password"
-                                        class="form-control form-control-lg @error('password') is-invalid @enderror"
-                                        name="password" id="password" placeholder="Password" required>
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <input type="password" class="form-control form-control-lg" name="password"
+                                        id="password" placeholder="Password">
                                 </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-dark btn-lg">Login</button>
-                                    <a href="{{ route('register') }}" class="btn btn-primary btn-lg">Register</a>
                                 </div>
-
                             </form>
 
                         </div>

@@ -2,11 +2,11 @@
     <div class="container-fluid">
 
         <div class="bg-warning py-5 rounded-5"
-            style="background-image: url('{{ asset('frontend/images/bg-pattern-2.png') }}') no-repeat;">
+            style="background-image: url('{{ asset('fe/images/bg-pattern-2.png') }}') no-repeat;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="{{ asset('frontend/images/phone.png') }}" alt="phone" class="image-float img-fluid">
+                        <img src="{{ asset('fe/images/phone.png') }}" alt="phone" class="image-float img-fluid">
                     </div>
                     <div class="col-md-8">
                         <h2 class="my-5">Shop faster with foodmart App</h2>
@@ -15,8 +15,8 @@
                             semper erat ac in suspendisse iaculis. Amet blandit tortor praesent ante vitae. A, enim
                             pretiummi senectus magna. Sagittis sed ptibus liberolectus non et psryroin.</p>
                         <div class="d-flex gap-2 flex-wrap">
-                            <img src="{{ asset('frontend/images/app-store.jpg') }}" alt="app-store">
-                            <img src="{{ asset('frontend/images/google-play.jpg') }}" alt="google-play">
+                            <img src="{{ asset('fe/images/app-store.jpg') }}" alt="app-store">
+                            <img src="{{ asset('fe/images/google-play.jpg') }}" alt="google-play">
                         </div>
                     </div>
                 </div>
