@@ -105,10 +105,15 @@
                         </div>
                         <div class="button-wrap row g-2">
                             <div class="col-md-12">
+                                <a href="https://api.whatsapp.com/send/?phone=6282324129752&text=Halo saya ada pertanyaan&type=phone_number&app_absent=0"
+                                    target="_blank"
+                                    class="btn btn-success py-3 px-4 text-uppercase btn-rounded-none w-100 mb-2">Chat
+                                    Whatsapp Admin</a>
                                 <form action="{{ route('fe.cart.checkout') }}" method="POST">
                                     @csrf
                                     <button type="submit" @disabled(count($carts ?? []) < 1)
-                                        class="btn btn-primary py-3 px-4 text-uppercase btn-rounded-none w-100">Proceed to
+                                        class="btn btn-primary py-3 px-4 text-uppercase btn-rounded-none w-100">Proceed
+                                        to
                                         checkout</button>
                                 </form>
                             </div>

@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 @section('content')
-    @include('frontend.partials.banner')
+    {{-- @include('frontend.partials.banner') --}}
     {{-- @include('frontend.partials.category', ['categories' => $categories]) --}}
     {{-- @include('frontend.partials.newly') --}}
     {{-- @include('frontend.partials.trending') --}}
@@ -15,5 +15,5 @@
     @include('frontend.partials.arrived')
     @include('frontend.partials.recent_blog')
     @include('frontend.partials.info') --}}
-    @include('frontend.partials.other')
+    {{-- @include('frontend.partials.other') --}}
 @endsection

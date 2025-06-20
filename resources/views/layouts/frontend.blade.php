@@ -105,10 +105,10 @@
         </defs>
     </svg>
 
-    <div class="preloader-wrapper">
+    {{-- <div class="preloader-wrapper">
         <div class="preloader">
         </div>
-    </div>
+    </div> --}}
 
     @include('components.cart')
 
