@@ -124,7 +124,7 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    Empty cart
+                                    Empty Transaction
                                 @endforelse
                             </tbody>
                         </table>

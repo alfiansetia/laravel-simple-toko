@@ -22,6 +22,7 @@ class FeController extends Controller
             ->with('category')
             ->where('is_available', 1)
             ->where('name', 'like', '%' . $request->search . '%')
+            ->orderBy('category_id')
             ->get()
             ->groupBy('category_id');
         return view('frontend.index', compact([

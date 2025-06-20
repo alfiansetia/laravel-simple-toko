@@ -23,8 +23,7 @@
                     <div class="col-11 col-md-11">
                         <form id="search-form" class="text-center" action="{{ route('fe.index') }}" method="GET">
                             <input type="text" name="search" class="form-control border-0 bg-transparent"
-                                placeholder="Search for more than 20,000 products"
-                                value="{{ request()->query('search') }}" required />
+                                placeholder="Search products" value="{{ request()->query('search') }}" />
                         </form>
                     </div>
                     <div class="col-1" onclick="document.getElementById('search-form').submit()"
