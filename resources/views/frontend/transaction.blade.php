@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 @section('content')
-    <section class="py-5 pb-0" style="background: url({{ asset('fe/images/background-pattern.jpg') }});">
+    <section class="py-5 pb-0 pt-1" style="background: url({{ asset('fe/images/background-pattern.jpg') }});">
         <div class="container-fluid">
             <div class="d-flex justify-content-between">
                 <h1 class="page-title pb-2">Detail Transaction {{ $data->code }}</h1>
@@ -13,13 +13,12 @@
         </div>
     </section>
 
-    <section class="py-5">
+    <section class="py-5 pt-2">
         <div class="container-fluid">
             <div class="row g-5">
                 <div class="col-md-4">
                     <div class="cart-totals bg-grey py-5 pt-0">
-                        {{-- <h4 class="text-dark pb-4">Transaction Total</h4> --}}
-                        <div class="total-price pb-5">
+                        <div class="total-price pb-2">
                             <table cellspacing="0" class="table text-uppercase">
                                 <tbody>
                                     <tr class="order-total pt-2 pb-2 border-bottom">
@@ -81,7 +80,6 @@
                                     <th scope="col" class="card-title text-uppercase text-muted">Product</th>
                                     <th scope="col" class="card-title text-uppercase text-muted">Qty</th>
                                     <th scope="col" class="card-title text-uppercase text-muted">Subtotal</th>
-                                    <th scope="col" class="card-title text-uppercase text-muted"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,16 +108,6 @@
                                         <td class="py-4 pb-0">
                                             <div class="total-price">
                                                 <span class="money text-dark">{{ hrg($item->qty * $item->price) }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-4 pb-0">
-                                            <div class="cart-remove">
-                                                <a href="javascript:void(0);"
-                                                    onclick="remove_from_cart('{{ $item->id }}')">
-                                                    <svg width="24" height="24">
-                                                        <use xlink:href="#trash"></use>
-                                                    </svg>
-                                                </a>
                                             </div>
                                         </td>
                                     </tr>

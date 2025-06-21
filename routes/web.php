@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FeController::class, 'index'])->name('fe.index');
 Route::get('profile', [FeController::class, 'profile'])->name('fe.profile.index');
+Route::post('profile', [FeController::class, 'profileUpdate'])->name('fe.profile.update');
 Route::get('transaction/{transaction:code}', [FeController::class, 'transaction'])->name('fe.transaction.detail');
 Route::get('carts', [CartController::class, 'index'])->name('fe.cart.index');
 Route::post('carts', [CartController::class, 'store'])->name('fe.cart.store');

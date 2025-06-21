@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class FeController extends Controller
 {
@@ -39,6 +40,25 @@ class FeController extends Controller
             'user',
             'transactions'
         ]));
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'name'      => ['required', 'string', 'max:255'],
+            'password'  => ['nullable', 'string', 'min:8', 'confirmed'],
+            'whatsapp'  => ['required'],
+        ]);
+        $user = auth()->user();
+        $param = [
+            'name'      => $request->name,
+            'whatsapp'  =>  $request->whatsapp,
+        ];
+        if ($request->filled('password')) {
+            $param['password'] = Hash::make($request->password);
+        }
+        $user->update($param);
+        return redirect()->back()->with('success', 'Profile updated!');
     }
 
 
