@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role != Role::ADMIN) {
-            return redirect()->route('fe.index');
+        if (auth()->user()->role != Role::ADMIN->value) {
+            return redirect()->route('filament.admin.pages.dashboard');
         }
         return view('home');
     }

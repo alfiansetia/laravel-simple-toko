@@ -66,6 +66,10 @@
                                 </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-dark">Update Profile</button>
+                                    @if (role_admin($user->role))
+                                        <a href="{{ route('filament.admin.pages.dashboard') }}"
+                                            class="btn btn-warning">Dashboard Admin</a>
+                                    @endif
                                 </div>
                             </form>
                         </div>
