@@ -2,10 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\Role;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -13,18 +16,48 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')
+                    ->label('Name')
+                    ->required()
+                    ->maxLength(100),
+                TextInput::make('email')
+                    ->label('Email')
+                    ->email()
+                    ->required()
+                    ->maxLength(100),
+                TextInput::make('whatsapp')
+                    ->label('Whatsapp')
+                    ->required()
+                    ->maxLength(15),
+                Select::make('role')
+                    ->label('Role')
+                    ->options(collect(Role::cases())->mapWithKeys(fn($role) => [
+                        $role->value => $role->label(),
+                    ]))
+                    ->default(Role::USER->value)
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                TextInput::make('password')
+                    ->label('Password')
+                    ->password()
+                    ->dehydrateStateUsing(fn($state) => filled($state) ? Hash::make($state) : null)
+                    ->required(fn(string $context) => $context === 'create')
+                    ->nullable()
+
             ]);
     }
 

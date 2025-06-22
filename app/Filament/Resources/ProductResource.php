@@ -7,8 +7,10 @@ use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -17,12 +19,13 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-cube';
 
     public static function form(Form $form): Form
     {
@@ -50,7 +53,14 @@ class ProductResource extends Resource
                     ->imagePreviewHeight('150')
                     ->previewable()
                     ->downloadable()
-                    ->required(),
+                    ->nullable(),
+                RichEditor::make('description')
+                    ->label('Description')
+                    ->nullable()
+                    ->maxLength(200),
+                Toggle::make('is_available')
+                    ->label('Available')
+                    ->default(true),
             ]);
     }
 
@@ -64,8 +74,10 @@ class ProductResource extends Resource
                     ->height(50),
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('price')->formatStateUsing(fn($state) => hrg($state)),
-                TextColumn::make('is_available')->formatStateUsing(fn($state) => $state ? 'Yes' : 'No'),
-                TextColumn::make('description'),
+                TextColumn::make('is_available')
+                    ->label('Available')
+                    ->formatStateUsing(fn($state) => $state ? 'Yes' : 'No'),
+                TextColumn::make('description')->html(),
             ])
             ->filters([
                 //
