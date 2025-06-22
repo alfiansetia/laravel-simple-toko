@@ -64,7 +64,7 @@ class FeController extends Controller
 
     public function transaction(Transaction $transaction)
     {
-        $data = $transaction->load(['product', 'items']);
+        $data = $transaction->load(['items.product']);
         return view('frontend.transaction', compact([
             'data',
         ]));
