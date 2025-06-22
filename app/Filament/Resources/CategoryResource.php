@@ -31,15 +31,15 @@ class CategoryResource extends Resource
                     ->label('Name')
                     ->required()
                     ->maxLength(255),
-                FileUpload::make('image') // nama kolom di database
+                FileUpload::make('image')
                     ->label('Image')
                     ->image()
-                    ->directory('uploads/images') // optional: folder penyimpanan
-                    ->imagePreviewHeight('150')  // optional: preview tinggi
+                    ->disk('public')
+                    ->directory('categories')
+                    ->imagePreviewHeight('150')
                     ->previewable()
                     ->downloadable()
-                    ->required(), // atau optional()
-
+                    ->required(),
                 //
             ]);
     }
@@ -50,8 +50,9 @@ class CategoryResource extends Resource
             ->columns([
                 ImageColumn::make('image')
                     ->label('Image')
+                    ->disk('public')
                     ->circular()
-                    ->height(50),
+                    ->height(50),  
                 TextColumn::make('name')->searchable(),
             ])
             ->filters([
