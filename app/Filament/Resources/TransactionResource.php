@@ -95,7 +95,7 @@ class TransactionResource extends Resource
                 TextColumn::make('user.email')->searchable(),
                 TextColumn::make('date')->searchable(),
                 TextColumn::make('code')->searchable(),
-                TextColumn::make('total')->searchable(),
+                TextColumn::make('total')->formatStateUsing(fn($state) => hrg($state))->searchable(),
                 TextColumn::make('status')->searchable(),
             ])
             ->filters([
