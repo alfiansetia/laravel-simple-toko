@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'whatsapp_admin'    => env('WHATSAAP_ADMIN'),
+    'whatsapp_token'    => env('WHATSAAP_TOKEN'),
+    'company_address'   => env('COMPANY_ADDRESS')
+
 ];

@@ -11,3 +11,8 @@ function role_admin($role)
 {
     return $role == Role::ADMIN->value;
 }
+
+function wa_admin()
+{
+    return config('services.whatsapp_admin');
+}
