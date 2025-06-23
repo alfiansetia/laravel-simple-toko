@@ -21,6 +21,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 
 class TransactionResource extends Resource
 {
@@ -97,7 +99,24 @@ class TransactionResource extends Resource
                 TextColumn::make('status')->searchable(),
             ])
             ->filters([
-                //
+                Filter::make('Tanggal')
+                    ->form([
+                        DatePicker::make('from')->label('Dari Tanggal'),
+                        DatePicker::make('until')->label('Sampai Tanggal'),
+                    ])
+                    ->query(function ($query, array $data) {
+                        return $query
+                            ->when($data['from'], fn($q) => $q->whereDate('date', '>=', $data['from']))
+                            ->when($data['until'], fn($q) => $q->whereDate('date', '<=', $data['until']));
+                    }),
+                SelectFilter::make('status')
+                    ->label('Status Transaksi')
+                    ->options([
+                        TransactionStatus::PENDING->value => 'Pending',
+                        TransactionStatus::DONE->value => 'Selesai',
+                        TransactionStatus::CANCEL->value => 'Dibatalkan',
+                    ])
+                    ->default(null),
             ])
             ->actions([
                 Action::make('Cancel')
