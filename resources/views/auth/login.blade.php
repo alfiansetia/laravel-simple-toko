@@ -19,12 +19,11 @@
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email"
-                                        class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                        name="email" id="email" placeholder="abc@mail.com" required autofocus
-                                        autocomplete="email">
-                                    @error('email')
+                                    <label for="whatsapp" class="form-label">Whatsapp</label>
+                                    <input type="tel"
+                                        class="form-control form-control-lg @error('whatsapp') is-invalid @enderror"
+                                        name="whatsapp" id="whatsapp" placeholder="08xxxxx" required autofocus>
+                                    @error('whatsapp')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

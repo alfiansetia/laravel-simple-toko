@@ -33,14 +33,10 @@ class UserResource extends Resource
                     ->label('Name')
                     ->required()
                     ->maxLength(100),
-                TextInput::make('email')
-                    ->label('Email')
-                    ->email()
-                    ->required()
-                    ->maxLength(100),
                 TextInput::make('whatsapp')
                     ->label('Whatsapp')
                     ->required()
+                    ->unique('users')
                     ->maxLength(15),
                 Select::make('role')
                     ->label('Role')
@@ -66,7 +62,6 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->searchable(),
-                TextColumn::make('email')->searchable(),
                 TextColumn::make('whatsapp')->searchable(),
                 TextColumn::make('role')->searchable(),
             ])

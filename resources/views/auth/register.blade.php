@@ -30,18 +30,6 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email"
-                                        class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                        name="email" id="email" placeholder="abc@mail.com" required
-                                        autocomplete="email">
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
                                     <label for="whatsapp" class="form-label">Whatsapp</label>
                                     <input type="phone"
                                         class="form-control form-control-lg @error('whatsapp') is-invalid @enderror"
@@ -75,11 +63,6 @@
                                         </span>
                                     @enderror
                                 </div>
-                                {{-- <div class="form-check form-check-inline mb-3">
-                                    <label class="form-check-label" for="subscribe">
-                                        <input class="form-check-input" type="checkbox" id="subscribe" value="subscribe">
-                                        Subscribe to the newsletter</label>
-                                </div> --}}
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-dark btn-lg">Register</button>
                                     <a href="{{ route('login') }}" class="btn btn-primary btn-lg">Back to Login</a>
