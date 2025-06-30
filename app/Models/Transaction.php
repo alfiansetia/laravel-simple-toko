@@ -11,14 +11,14 @@ class Transaction extends Model
 
     public $timestamps = false;
 
-    protected static function boot()
-    {
-        parent::boot();
-        static::created(function ($trx) {
-            $trx->sendNotifOrderToAdmin();
-            $trx->sendNotifOrderToUser();
-        });
-    }
+    // protected static function boot()
+    // {
+    //     parent::boot();
+    //     static::created(function ($trx) {
+    //         $trx->sendNotifOrderToAdmin();
+    //         $trx->sendNotifOrderToUser();
+    //     });
+    // }
 
     public function sendNotifOrderToAdmin()
     {

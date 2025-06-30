@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>FoodMart - Free eCommerce Grocery Store HTML Website Template</title>
+    <title>{{ config('app.name') }} || {{ config('services.company_address') }}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,8 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('fe/images/logo_nt.png') }}" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -148,9 +150,22 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/block-ui@2.70.1/jquery.blockUI.min.js"></script>
+
 
     <script src="{{ asset('fe/js/plugins.js') }}"></script>
     <script src="{{ asset('fe/js/script.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $(document).ajaxStart(function() {
+                $.blockUI({
+                    message: '<img src="{{ asset('fe/images/loading.gif') }}" width="20px" height="20px" /> Just a moment...',
+                    baseZ: 2000,
+                });
+            }).ajaxStop($.unblockUI);
+        })
+    </script>
 
     @stack('js')
 

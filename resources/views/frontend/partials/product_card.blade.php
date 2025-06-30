@@ -19,8 +19,6 @@
                                         {{ $item->first()->category->name }}
                                     </a>
                                 @endforeach
-
-
                             </div>
                         </nav>
                     </div>
@@ -76,7 +74,31 @@
     <script>
         function add_to_cart(id) {
             document.getElementById('cart_product').value = id;
-            document.getElementById('add-to-cart').submit();
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('fe.cart.store') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: $('#add-to-cart').serialize(),
+                beforeSend: function() {},
+                success: function(res) {
+                    toastr.success(res.message, 'Sukses!');
+                },
+                error: function(xhr, status, error) {
+                    if (xhr.status == 401) {
+                        toastr.error('Silahkan Login!');
+                        setTimeout(() => {
+                            window.location.href = "{{ route('login') }}"
+                        }, 3000);
+                        return
+                    }
+                    toastr.error(xhr.responseJSON.message || 'error');
+                }
+            });
+            return
+            // document.getElementById('add-to-cart').submit();
         }
     </script>
 @endpush

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class WhatsappService
 {
@@ -42,15 +43,23 @@ class WhatsappService
 
     public static function messageTrx(Transaction $trx)
     {
+        $trx->load('items');
         $message = '';
         $message .= config('app.name') . "\n";
         $message .= config('services.company_address') . "\n";
+        $message .= "===================\n";
         $message .= "Data Pesanan!\n";
-        $message .= 'Pemesan : ' . $trx->user->name . '/' . $trx->user->email . '/' . $trx->user->whatsapp . "\n";
+        $message .= 'Pemesan : ' . $trx->user->name . '/' . $trx->user->whatsapp . "\n";
         $message .= 'Waktu : ' . $trx->date . "\n";
         $message .= 'No Order : ' . $trx->code . "\n";
         $message .= 'Total : ' . $trx->total . "\n";
         $message .= 'Status : ' . $trx->status->value . "\n";
+        $message .= "===================\n";
+        $message .= "Item (" . $trx->items->count() . ") : \n";
+        foreach ($trx->items as $key => $item) {
+            $message .= "(" . $item->qty . "x) " . ($item->product->name ?? '-') . "\n";
+        }
+        $message .= "\n\n___Terima Kasih___\n";
         return $message;
     }
 }

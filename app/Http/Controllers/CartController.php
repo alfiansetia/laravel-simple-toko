@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class CartController extends Controller
@@ -47,6 +48,12 @@ class CartController extends Controller
                 'user_id'       => auth()->id(),
                 'product_id'    => $request->product_id,
                 'qty'           => 1
+            ]);
+        }
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'message'   => 'Berhasil Tambah ke keranjang!',
+                'data'      => $cart,
             ]);
         }
         return redirect()->back()->with('success', 'Berhasil Tambah ke keranjang!');
@@ -91,11 +98,13 @@ class CartController extends Controller
                         'qty'               => $item->qty,
                     ]);
                 }
+                $trx->sendNotifOrderToAdmin();
+                $trx->sendNotifOrderToUser();
                 $user->carts()->delete();
                 DB::commit();
-
-                return redirect()->back()->with('success', 'Berhasil Membuat Order!');
+                return redirect()->route('fe.transaction.detail', $trx->code)->with('success', 'Berhasil Membuat Order!');
             } else {
+                DB::rollBack();
                 return redirect()->back()->with('error', 'Keranjang Kosong!');
             }
         } catch (\Throwable $th) {
