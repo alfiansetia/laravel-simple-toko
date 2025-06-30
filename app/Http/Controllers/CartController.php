@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class CartController extends Controller
@@ -48,7 +49,7 @@ class CartController extends Controller
                 'qty'           => 1
             ]);
         }
-        return redirect()->back()->with('success', 'Success Add to cart!');
+        return redirect()->back()->with('success', 'Berhasil Tambah ke keranjang!');
     }
 
 
@@ -58,41 +59,48 @@ class CartController extends Controller
     public function destroy(Cart $cart)
     {
         $cart->delete();
-        return redirect()->back()->with('success', 'Success Delete from cart!');
+        return redirect()->back()->with('success', 'Berhasil Hapus dari keranjang!');
     }
 
     public function checkout()
     {
         // 
-        $user = auth()->user();
-        $oncart = $user->carts;
-        if ($user->carts()->count() > 0) {
-            $total = 0;
-            foreach ($oncart as $key => $item) {
-                $total += ($item->qty * $item->product->price);
-            }
-            $trx = Transaction::create([
-                'code'      => strtoupper(Str::random(8)),
-                'date'      => date('Y-m-d H:i:s'),
-                'user_id'   => $user->id,
-                'total'     => $total,
-                'status'    => TransactionStatus::PENDING,
+        DB::beginTransaction();
+        try {
+            $user = auth()->user();
+            $oncart = $user->carts;
+            if ($user->carts()->count() > 0) {
+                $total = 0;
+                foreach ($oncart as $key => $item) {
+                    $total += ($item->qty * $item->product->price);
+                }
+                $trx = Transaction::create([
+                    'code'      => strtoupper(Str::random(8)),
+                    'date'      => date('Y-m-d H:i:s'),
+                    'user_id'   => $user->id,
+                    'total'     => $total,
+                    'status'    => TransactionStatus::PENDING,
 
-            ]);
-
-            foreach ($oncart as $key => $item) {
-                TransactionDetail::create([
-                    'transaction_id'    => $trx->id,
-                    'product_id'        => $item->product_id,
-                    'price'             => $item->product->price,
-                    'qty'               => $item->qty,
                 ]);
-            }
-            $user->carts()->delete();
 
-            return redirect()->back()->with('success', 'Success create Order!');
-        } else {
-            return redirect()->back()->with('error', 'Empty Cart!');
+                foreach ($oncart as $key => $item) {
+                    TransactionDetail::create([
+                        'transaction_id'    => $trx->id,
+                        'product_id'        => $item->product_id,
+                        'price'             => $item->product->price,
+                        'qty'               => $item->qty,
+                    ]);
+                }
+                $user->carts()->delete();
+                DB::commit();
+
+                return redirect()->back()->with('success', 'Berhasil Membuat Order!');
+            } else {
+                return redirect()->back()->with('error', 'Keranjang Kosong!');
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $th->getMessage());
         }
     }
 }

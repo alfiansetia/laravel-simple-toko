@@ -43,14 +43,14 @@ class WhatsappService
     public static function messageTrx(Transaction $trx)
     {
         $message = '';
-        $message .= config('app.name') . ' \n';
-        $message .= config('services.company_address') . ' \n';
-        $message .= 'Data Pesanan! \n';
-        $message .= 'Pemesan : ' . $trx->user->name . '/' . $trx->user->email . '/' . $trx->user->whatsapp . ' \n';
-        $message .= 'Waktu : ' . $trx->date . ' \n';
-        $message .= 'No Order : ' . $trx->code . ' \n';
-        $message .= 'Total : ' . $trx->total . ' \n';
-        $message .= 'Status : ' . $trx->status . ' \n';
+        $message .= config('app.name') . "\n";
+        $message .= config('services.company_address') . "\n";
+        $message .= "Data Pesanan!\n";
+        $message .= 'Pemesan : ' . $trx->user->name . '/' . $trx->user->email . '/' . $trx->user->whatsapp . "\n";
+        $message .= 'Waktu : ' . $trx->date . "\n";
+        $message .= 'No Order : ' . $trx->code . "\n";
+        $message .= 'Total : ' . $trx->total . "\n";
+        $message .= 'Status : ' . $trx->status->value . "\n";
         return $message;
     }
 }

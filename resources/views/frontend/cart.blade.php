@@ -3,11 +3,11 @@
     <section class="py-5 pb-0 pt-1" style="background: url({{ asset('fe/images/background-pattern.jpg') }});">
         <div class="container-fluid">
             <div class="d-flex justify-content-between">
-                <h1 class="page-title pb-2">List Cart</h1>
+                <h1 class="page-title pb-2">Daftar Keranjang</h1>
                 <nav class="breadcrumb fs-6">
                     <a class="breadcrumb-item nav-link" href="{{ route('fe.index') }}">Home</a>
                     {{-- <a class="breadcrumb-item nav-link" href="#">Pages</a> --}}
-                    <span class="breadcrumb-item active" aria-current="page">Cart</span>
+                    <span class="breadcrumb-item active" aria-current="page">Keranjang</span>
                 </nav>
             </div>
         </div>
@@ -24,7 +24,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="card-title text-uppercase text-muted">Product</th>
+                                            <th scope="col" class="card-title text-uppercase text-muted">Produk</th>
                                             <th scope="col" class="card-title text-uppercase text-muted">Quantity</th>
                                             <th scope="col" class="card-title text-uppercase text-muted">Subtotal</th>
                                             <th scope="col" class="card-title text-uppercase text-muted"></th>
@@ -80,7 +80,7 @@
                                                 </td>
                                             </tr>
                                         @empty
-                                            Empty cart
+                                            Keranjang Kosong
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -94,7 +94,7 @@
                         <div class="card-body">
 
                             <div class="cart-totals bg-grey py-5 pt-0">
-                                <h4 class="text-dark pb-4">Cart Total</h4>
+                                <h4 class="text-dark pb-4">Total Keranjang</h4>
                                 <div class="total-price pb-2">
                                     <table cellspacing="0" class="table text-uppercase">
                                         <tbody>

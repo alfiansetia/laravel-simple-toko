@@ -15,8 +15,8 @@ class Transaction extends Model
     {
         parent::boot();
         static::created(function ($trx) {
-            $this->sendNotifOrderToAdmin();
-            $this->sendNotifOrderToUser();
+            $trx->sendNotifOrderToAdmin();
+            $trx->sendNotifOrderToUser();
         });
     }
 

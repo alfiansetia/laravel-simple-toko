@@ -7,19 +7,17 @@
                 style="background: url('{{ asset('fe/images/bg-leaves-img-pattern.png') }}') no-repeat;">
                 <div class="container my-5">
                     <div class="row">
-                        <div class="col-md-6 p-5">
+                        <div class="col-md-6 p-5 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="section-header">
-                                <h2 class="section-title display-4">Get <span class="text-primary">25%
-                                        Discount</span> on your first purchase</h2>
+                                <h2 class="section-title display-4">{{ config('app.name') }}</h2>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictumst amet, metus, sit massa
-                                posuere maecenas. At tellus ut nunc amet vel egestas.</p>
+                            <p>{{ config('services.company_address') }}</p>
                         </div>
                         <div class="col-md-6 p-5">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="whatsapp" class="form-label">Whatsapp</label>
+                                    <label for="whatsapp" class="form-label">No Whatsapp</label>
                                     <input type="tel"
                                         class="form-control form-control-lg @error('whatsapp') is-invalid @enderror"
                                         name="whatsapp" id="whatsapp" placeholder="08xxxxx" required autofocus>

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('slug', 100);
             $table->string('image')->nullable();
             $table->integer('price')->default(0);
-            $table->integer('stock')->default(0);
             $table->boolean('is_available')->default(true);
             $table->string('description')->nullable();
             // $table->timestamps();

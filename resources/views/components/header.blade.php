@@ -5,7 +5,9 @@
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
                     <a href="{{ route('fe.index') }}">
-                        <img src="{{ asset('fe/images/logo.png') }}" alt="logo" class="img-fluid">
+                        <img src="{{ asset('fe/images/logo_new.png') }}" alt="logo" class="img-fluid"
+                            style="height: 54px"><span class="font-weight-bold"
+                            style="font-size: 20px; font-weight: bold"> {{ config('app.name') }}</span>
                     </a>
                 </div>
             </div>
@@ -23,7 +25,7 @@
                     <div class="col-11 col-md-11">
                         <form id="search-form" class="text-center" action="{{ route('fe.index') }}" method="GET">
                             <input type="text" name="search" class="form-control border-0 bg-transparent"
-                                placeholder="Search products" value="{{ request()->query('search') }}" />
+                                placeholder="Cari Produk" value="{{ request()->query('search') }}" />
                         </form>
                     </div>
                     <div class="col-1" onclick="document.getElementById('search-form').submit()"

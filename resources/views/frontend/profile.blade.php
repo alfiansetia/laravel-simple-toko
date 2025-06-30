@@ -10,9 +10,9 @@
                             <form method="POST" action="{{ route('fe.profile.update') }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
+                                    <label for="name" class="form-label">Nama</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        name="name" id="name" value="{{ $user->name }}" placeholder="Name"
+                                        name="name" id="name" value="{{ $user->name }}" placeholder="Nama"
                                         required autofocus>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -21,18 +21,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" id="email" placeholder="abc@mail.com" value="{{ $user->email }}"
-                                        required disabled autocomplete="email">
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label for="whatsapp" class="form-label">Whatsapp</label>
+                                    <label for="whatsapp" class="form-label">No Whatsapp</label>
                                     <input type="phone" class="form-control @error('whatsapp') is-invalid @enderror"
                                         name="whatsapp" id="whatsapp" placeholder="6282xx" value="{{ $user->whatsapp }}"
                                         required>
@@ -53,11 +42,11 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="password_confirmation" class="form-label">Password Confirmation </label>
+                                    <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
                                     <input type="password"
                                         class="form-control @error('password_confirmation') is-invalid @enderror"
                                         name="password_confirmation" id="password_confirmation"
-                                        placeholder="Password Confirmation">
+                                        placeholder="Konfirmasi Password">
                                     @error('password_confirmation')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -68,7 +57,7 @@
                                     <button type="submit" class="btn btn-dark">Update Profile</button>
                                     @if (role_admin($user->role))
                                         <a href="{{ route('filament.admin.pages.dashboard') }}"
-                                            class="btn btn-warning">Dashboard Admin</a>
+                                            class="btn btn-danger">Dashboard Admin</a>
                                     @endif
                                 </div>
                             </form>
@@ -79,14 +68,14 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h5>Data transaksi</h5>
+                            <h5>Daftar Transaksi</h5>
 
                             <div class="table-responsive cart">
                                 <table class="table" style="cursor: pointer">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="card-title text-uppercase text-muted">Date</th>
-                                            <th scope="col" class="card-title text-uppercase text-muted">Code</th>
+                                            <th scope="col" class="card-title text-uppercase text-muted">Tanggal</th>
+                                            <th scope="col" class="card-title text-uppercase text-muted">Kode</th>
                                             <th scope="col" class="card-title text-uppercase text-muted">Total</th>
                                             <th scope="col" class="card-title text-uppercase text-muted">Status</th>
                                         </tr>
@@ -116,7 +105,7 @@
                                                 </td>
                                             </tr>
                                         @empty
-                                            Empty transaction
+                                            Tidak ada transaksi
                                         @endforelse
                                     </tbody>
                                 </table>

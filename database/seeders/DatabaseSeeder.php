@@ -51,7 +51,6 @@ class DatabaseSeeder extends Seeder
                 'slug'          => fake()->slug(),
                 'image'         => 'https://picsum.photos/400/400?random=' . fake()->numberBetween(1000, 5000),
                 'price'         => fake()->numberBetween(1000, 1000000),
-                'stock'         => fake()->numberBetween(10, 100),
                 'is_available'  => true,
                 'description'   => fake()->sentence(),
             ]);

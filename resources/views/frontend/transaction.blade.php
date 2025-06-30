@@ -3,7 +3,7 @@
     <section class="py-5 pb-0 pt-1" style="background: url({{ asset('fe/images/background-pattern.jpg') }});">
         <div class="container-fluid">
             <div class="d-flex justify-content-between">
-                <h1 class="page-title pb-2">Detail Transaction {{ $data->code }}</h1>
+                <h1 class="page-title pb-2">Detail Transaksi {{ $data->code }}</h1>
                 <nav class="breadcrumb fs-6">
                     <a class="breadcrumb-item nav-link" href="{{ route('fe.index') }}">Home</a>
                     {{-- <a class="breadcrumb-item nav-link" href="#">Pages</a> --}}
@@ -22,7 +22,7 @@
                             <table cellspacing="0" class="table text-uppercase">
                                 <tbody>
                                     <tr class="order-total pt-2 pb-2 border-bottom">
-                                        <th>Date</th>
+                                        <th>Tanggal</th>
                                         <td data-title="Total">
                                             <span class="price-amount amount text-dark ps-5">
                                                 <bdi>
@@ -31,7 +31,7 @@
                                         </td>
                                     </tr>
                                     <tr class="order-total pt-2 pb-2 border-bottom">
-                                        <th>Code</th>
+                                        <th>Kode</th>
                                         <td data-title="Total">
                                             <span class="price-amount amount text-dark ps-5">
                                                 <bdi>
@@ -112,7 +112,7 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    Empty Item
+                                    Item Kosong
                                 @endforelse
                             </tbody>
                         </table>
