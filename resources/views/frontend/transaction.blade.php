@@ -62,11 +62,16 @@
                         </div>
                         <div class="button-wrap row g-2">
                             <div class="col-md-12">
-                                <form>
-                                    @csrf
-                                    <button type="submit"
-                                        class="btn btn-primary py-3 px-4 text-uppercase btn-rounded-none w-100">PRINT</button>
-                                </form>
+                                @if (!$data->isDone())
+                                    <a class="btn btn-success py-3 px-4 text-uppercase btn-rounded-none w-100">Download
+                                        Bukti</a>
+                                @else
+                                    <a href="https://api.whatsapp.com/send/?phone={{ config('services.whatsapp_admin') }}&text=Halo, Mohon konfirmasi pesanan saya, Order {{ $data->code }}&type=phone_number&app_absent=0"
+                                        target="_blank"
+                                        class="btn btn-primary py-3 px-4 text-uppercase btn-rounded-none w-100">Chat
+                                        Admin</a>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -123,18 +128,4 @@
             </div>
         </div>
     </section>
-
-    <form action="" id="remove-from-cart" method="POST">
-        @csrf
-        @method('DELETE')
-    </form>
 @endsection
-@push('js')
-    <script>
-        function remove_from_cart(cartId) {
-            const form = document.getElementById('remove-from-cart');
-            form.action = "{{ route('fe.cart.index') }}/" + cartId;
-            form.submit();
-        }
-    </script>
-@endpush

@@ -3,13 +3,17 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FeController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FeController::class, 'index'])->name('fe.index');
 Route::get('profile', [FeController::class, 'profile'])->name('fe.profile.index');
 Route::post('profile', [FeController::class, 'profileUpdate'])->name('fe.profile.update');
-Route::get('transaction/{transaction:code}', [FeController::class, 'transaction'])->name('fe.transaction.detail');
+
+Route::get('transaction/{transaction:code}/download', [TransactionController::class, 'download'])->name('fe.transaction.download');
+Route::get('transaction/{transaction:code}', [TransactionController::class, 'show'])->name('fe.transaction.detail');
+
 Route::get('carts', [CartController::class, 'index'])->name('fe.cart.index');
 Route::post('carts', [CartController::class, 'store'])->name('fe.cart.store');
 Route::delete('carts/{cart}', [CartController::class, 'destroy'])->name('fe.cart.destroy');

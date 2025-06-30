@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TransactionStatus;
 use App\Services\WhatsappService;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,5 +39,10 @@ class Transaction extends Model
     public function items()
     {
         return $this->hasMany(TransactionDetail::class);
+    }
+
+    public function isDone()
+    {
+        return $this->status == TransactionStatus::DONE->value;
     }
 }

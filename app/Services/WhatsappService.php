@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class WhatsappService
 {
@@ -52,7 +51,7 @@ class WhatsappService
         $message .= 'Pemesan : ' . $trx->user->name . '/' . $trx->user->whatsapp . "\n";
         $message .= 'Waktu : ' . $trx->date . "\n";
         $message .= 'No Order : ' . $trx->code . "\n";
-        $message .= 'Total : ' . $trx->total . "\n";
+        $message .= 'Total : ' . hrg($trx->total) . "\n";
         $message .= 'Status : ' . $trx->status->value . "\n";
         $message .= "===================\n";
         $message .= "Item (" . $trx->items->count() . ") : \n";
