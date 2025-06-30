@@ -36,7 +36,7 @@ class TransactionResource extends Resource
             ->schema([
                 Select::make('user_id')
                     ->label('User')
-                    ->relationship('user', 'email')
+                    ->relationship('user', 'name')
                     ->disabled()
                     ->preload()
                     ->required(),
@@ -92,7 +92,7 @@ class TransactionResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('user.email')->searchable(),
+                TextColumn::make('user.name')->searchable(),
                 TextColumn::make('date')->searchable(),
                 TextColumn::make('code')->searchable(),
                 TextColumn::make('total')->formatStateUsing(fn($state) => hrg($state))->searchable(),

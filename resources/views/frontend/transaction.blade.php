@@ -62,8 +62,9 @@
                         </div>
                         <div class="button-wrap row g-2">
                             <div class="col-md-12">
-                                @if (!$data->isDone())
-                                    <a class="btn btn-success py-3 px-4 text-uppercase btn-rounded-none w-100">Download
+                                @if ($data->isDone())
+                                    <a href="{{ route('fe.transaction.download', $data->code) }}"
+                                        class="btn btn-success py-3 px-4 text-uppercase btn-rounded-none w-100">Download
                                         Bukti</a>
                                 @else
                                     <a href="https://api.whatsapp.com/send/?phone={{ config('services.whatsapp_admin') }}&text=Halo, Mohon konfirmasi pesanan saya, Order {{ $data->code }}&type=phone_number&app_absent=0"

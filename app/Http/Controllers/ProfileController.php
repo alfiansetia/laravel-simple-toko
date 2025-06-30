@@ -12,7 +12,7 @@ class ProfileController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function profile()
+    public function index()
     {
         $user = auth()->user();
         $transactions = $user->transactions;
@@ -22,7 +22,7 @@ class ProfileController extends Controller
         ]));
     }
 
-    public function profileUpdate(Request $request)
+    public function update(Request $request)
     {
         $this->validate($request, [
             'name'      => ['required', 'string', 'max:255'],
