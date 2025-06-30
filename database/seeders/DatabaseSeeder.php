@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
 
         $cat = Category::all();
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $prod = Product::create([
                 'category_id'   => $cat->random()->id,
                 'name'          => fake()->name(),
