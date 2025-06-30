@@ -15,7 +15,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $transactions = $user->transactions;
+        $transactions = $user->transactions()->simplePaginate(5);
         return view('frontend.profile', compact([
             'user',
             'transactions'
