@@ -75,6 +75,7 @@ class ProductResource extends Resource
                     ->circular()
                     ->height(50),
                 TextColumn::make('name')->searchable(),
+                TextColumn::make('category.name')->searchable(),
                 TextColumn::make('price')->formatStateUsing(fn($state) => hrg($state)),
                 TextColumn::make('is_available')
                     ->label('Available')
