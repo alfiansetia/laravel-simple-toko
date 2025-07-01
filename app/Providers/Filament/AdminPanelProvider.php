@@ -30,7 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->spa()
             // ->brandLogo(asset('fe/images/logo_new.png'))
-            ->favicon(asset('fe/images/logo_new.png'))
+            ->favicon(asset('fe/images/logo_nt.png'))
             ->brandName(config('app.name'))
             // ->login()
             ->colors([
