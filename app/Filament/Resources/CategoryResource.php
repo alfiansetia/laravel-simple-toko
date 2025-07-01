@@ -35,6 +35,7 @@ class CategoryResource extends Resource
                 FileUpload::make('image')
                     ->label('Image')
                     ->image()
+                    ->defaultImageUrl(asset('fe/images/default.png'))
                     ->disk('public')
                     ->directory('categories')
                     ->imagePreviewHeight('150')
@@ -51,6 +52,7 @@ class CategoryResource extends Resource
             ->columns([
                 ImageColumn::make('image')
                     ->label('Image')
+                    ->defaultImageUrl(asset('fe/images/default.png'))
                     ->disk('public')
                     ->circular()
                     ->height(50),

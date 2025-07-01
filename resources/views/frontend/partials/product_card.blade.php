@@ -44,7 +44,8 @@
                                                 </button>
                                                 <figure>
                                                     <a href="javascript:void(0);" title="{{ $item->name }}">
-                                                        <img src="{{ $item->image }}" class="tab-image">
+                                                        <img src="{{ $item->image_url }}" class="tab-image"
+                                                            style="width: 100%">
                                                     </a>
                                                 </figure>
                                                 <h3>{{ $item->name }}</h3>

@@ -20,8 +20,8 @@ class Dashboard extends PagesDashboard
     public function getWidgets(): array
     {
         return [
-            AccountWidget::class,
-            FilamentInfoWidget::class,
+            // AccountWidget::class,
+            // FilamentInfoWidget::class,
             TransactionChart::class,
         ];
     }

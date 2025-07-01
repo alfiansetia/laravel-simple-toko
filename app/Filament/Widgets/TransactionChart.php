@@ -35,4 +35,9 @@ class TransactionChart extends ChartWidget
     {
         return 'bar'; // atau 'line'
     }
+
+    public function getColumnSpan(): int
+    {
+        return 12;
+    }
 }

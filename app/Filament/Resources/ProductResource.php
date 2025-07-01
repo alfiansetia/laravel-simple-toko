@@ -71,6 +71,7 @@ class ProductResource extends Resource
             ->columns([
                 ImageColumn::make('image')
                     ->label('Image')
+                    ->defaultImageUrl(asset('fe/images/default.png'))
                     ->circular()
                     ->height(50),
                 TextColumn::make('name')->searchable(),
