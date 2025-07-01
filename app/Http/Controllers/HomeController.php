@@ -26,7 +26,8 @@ class HomeController extends Controller
     {
         if (auth()->user()->role != Role::ADMIN->value) {
             return redirect()->route('fe.profile.index');
+        } else {
+            return redirect()->route('filament.admin.pages.dashboard');
         }
-        return view('home');
     }
 }
