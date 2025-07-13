@@ -1,4 +1,9 @@
 @extends('layouts.frontend')
+@push('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
 @section('content')
     <section class="py-5 pb-0 pt-1" style="background: url({{ asset('fe/images/background-pattern.jpg') }});">
         <div class="container-fluid">
@@ -69,14 +74,30 @@
                                                     </div>
                                                 </td>
                                                 <td class="py-4 pb-0">
-                                                    <div class="cart-remove">
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        @if ($item->qty > 1)
+                                                            <button type="button" class="btn btn-warning"
+                                                                onclick="min_cart('{{ $item->id }}')">
+                                                                <i class="fa-solid fa-minus"></i>
+                                                            </button>
+                                                        @endif
+                                                        <button type="button" class="btn btn-secondary"
+                                                            onclick="plus_cart('{{ $item->id }}')">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger"
+                                                            onclick="remove_from_cart('{{ $item->id }}')">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                    {{-- <div class="cart-remove">
                                                         <a href="javascript:void(0);"
                                                             onclick="remove_from_cart('{{ $item->id }}')">
                                                             <svg width="24" height="24">
                                                                 <use xlink:href="#trash"></use>
                                                             </svg>
                                                         </a>
-                                                    </div>
+                                                    </div> --}}
                                                 </td>
                                             </tr>
                                         @empty
@@ -140,12 +161,37 @@
         @csrf
         @method('DELETE')
     </form>
+
+    <form action="" id="plus-cart" method="POST">
+        @csrf
+        @method('POST')
+    </form>
+
+    <form action="" id="min-cart" method="POST">
+        @csrf
+        @method('POST')
+    </form>
 @endsection
 @push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
+        integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         function remove_from_cart(cartId) {
             const form = document.getElementById('remove-from-cart');
             form.action = "{{ route('fe.cart.index') }}/" + cartId;
+            form.submit();
+        }
+
+        function plus_cart(cartId) {
+            const form = document.getElementById('plus-cart');
+            form.action = "{{ url('carts-plus') }}/" + cartId;
+            form.submit();
+        }
+
+        function min_cart(cartId) {
+            const form = document.getElementById('min-cart');
+            form.action = "{{ url('carts-min') }}/" + cartId;
             form.submit();
         }
     </script>

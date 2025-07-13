@@ -20,6 +20,9 @@ Route::post('carts', [CartController::class, 'store'])->name('fe.cart.store');
 Route::delete('carts/{cart}', [CartController::class, 'destroy'])->name('fe.cart.destroy');
 Route::post('checkout', [CartController::class, 'checkout'])->name('fe.cart.checkout');
 
+Route::post('carts-plus/{cart}', [CartController::class, 'plus'])->name('fe.cart.plus');
+Route::post('carts-min/{cart}', [CartController::class, 'min'])->name('fe.cart.min');
+
 Route::get('checkout', function () {
     return redirect()->route('fe.cart.index')->with('error', 'Not Allowed!');
 });

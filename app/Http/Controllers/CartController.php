@@ -112,4 +112,23 @@ class CartController extends Controller
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
+
+    public function plus(Cart $cart)
+    {
+        $cart->update([
+            'qty' => $cart->qty + 1
+        ]);
+        return redirect()->back()->with('success', 'Berhasil diubah !');
+    }
+
+    public function min(Cart $cart)
+    {
+        if ($cart->qty < 2) {
+            return redirect()->back()->with('success', 'Keranjang hanya ada 1 !');
+        }
+        $cart->update([
+            'qty' => $cart->qty - 1
+        ]);
+        return redirect()->back()->with('success', 'Berhasil diubah !');
+    }
 }
