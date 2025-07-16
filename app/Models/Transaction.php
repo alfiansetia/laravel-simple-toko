@@ -59,4 +59,9 @@ class Transaction extends Model
     {
         return $this->status == TransactionStatus::PENDING;
     }
+
+    public function isCancel()
+    {
+        return $this->status == TransactionStatus::CANCEL;
+    }
 }

@@ -43,6 +43,9 @@ class WhatsappService
 
     public static function sendNotifOrderDoneToUser(Transaction $trx)
     {
+        if ($trx->isPending()) {
+            return;
+        }
         $message = static::messageTrxSuccess($trx);
         return static::sendMessage($trx->user->whatsapp, $message);
     }
