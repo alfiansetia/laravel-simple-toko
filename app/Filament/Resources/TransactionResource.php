@@ -122,7 +122,7 @@ class TransactionResource extends Resource
                 Action::make('Cancel')
                     ->color('danger')
                     ->requiresConfirmation()
-                    ->visible(fn(Transaction $record) => ($record->status == TransactionStatus::PENDING->value || $record->status == TransactionStatus::DONE->value))
+                    ->visible(fn(Transaction $record) => ($record->isPending() || $record->isDone()))
                     ->action(function (Transaction $record) {
                         $record->update(['status' => TransactionStatus::CANCEL->value]);
                         Notification::make()
@@ -133,7 +133,7 @@ class TransactionResource extends Resource
 
                 Action::make('Done')
                     ->color('success')
-                    ->visible(fn(Transaction $record) => $record->status == TransactionStatus::PENDING->value)
+                    ->visible(fn(Transaction $record) => $record->isPending())
                     ->action(function (Transaction $record) {
                         $record->update(['status' => TransactionStatus::DONE->value]);
                         Notification::make()
