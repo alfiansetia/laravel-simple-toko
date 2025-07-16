@@ -71,7 +71,8 @@
                                         target="_blank"
                                         class="btn btn-primary py-3 px-4 text-uppercase btn-rounded-none w-100">Chat
                                         Admin</a>
-
+                                @endif
+                                @if ($data->isPending())
                                     <a href="{{ $data->payment_url }}" target="_blank"
                                         class="btn btn-secondary py-3 px-4 mt-2 text-uppercase btn-rounded-none w-100">BAYAR</a>
                                 @endif
