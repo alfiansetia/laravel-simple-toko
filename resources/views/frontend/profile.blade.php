@@ -99,7 +99,7 @@
                                                     <a href="{{ route('fe.transaction.detail', $item->code) }}">
                                                         <div class="total-price">
                                                             <span
-                                                                class="money {{ $item->status == 'pending' ? 'bg-warning' : ($item->status == 'cancel' ? 'bg-danger' : 'bg-success') }}">{{ $item->status }}</span>
+                                                                class="money {{ $item->isPending() ? 'bg-warning' : ($item->isDone() ? 'bg-success' : 'bg-danger') }}">{{ $item->status }}</span>
                                                         </div>
                                                     </a>
                                                 </td>
