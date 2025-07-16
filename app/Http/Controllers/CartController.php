@@ -6,6 +6,7 @@ use App\Enums\TransactionStatus;
 use App\Models\Cart;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Services\MidtransService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -87,7 +88,6 @@ class CartController extends Controller
                     'user_id'   => $user->id,
                     'total'     => $total,
                     'status'    => TransactionStatus::PENDING,
-
                 ]);
 
                 foreach ($oncart as $key => $item) {
@@ -98,6 +98,10 @@ class CartController extends Controller
                         'qty'               => $item->qty,
                     ]);
                 }
+                $midtrans = MidtransService::createTransaction($trx);
+                $trx->update([
+                    'payment_url' => $midtrans->redirect_url,
+                ]);
                 $trx->sendNotifOrderToAdmin();
                 $trx->sendNotifOrderToUser();
                 $user->carts()->delete();
@@ -109,7 +113,7 @@ class CartController extends Controller
             }
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->back()->with('error', $th->getMessage());
+            return redirect()->back()->with('error', 'Erorr : ' . $th->getMessage());
         }
     }
 

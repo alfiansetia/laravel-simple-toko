@@ -12,6 +12,10 @@ class Transaction extends Model
 
     public $timestamps = false;
 
+    protected $casts = [
+        'status' => TransactionStatus::class,
+    ];
+
     // protected static function boot()
     // {
     //     parent::boot();
@@ -31,6 +35,11 @@ class Transaction extends Model
         WhatsappService::sendNotifOrderToUser($this);
     }
 
+    public function sendNotifOrderDoneToUSer()
+    {
+        WhatsappService::sendNotifOrderDoneToUser($this);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -43,6 +52,11 @@ class Transaction extends Model
 
     public function isDone()
     {
-        return $this->status == TransactionStatus::DONE->value;
+        return $this->status == TransactionStatus::DONE;
+    }
+
+    public function isPending()
+    {
+        return $this->status == TransactionStatus::PENDING;
     }
 }
