@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\TransactionStatus;
 use App\Services\WhatsappService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Transaction extends Model
 {
@@ -58,6 +59,11 @@ class Transaction extends Model
     public function isPending()
     {
         return $this->status == TransactionStatus::PENDING;
+    }
+
+    public function isExpired()
+    {
+        return Carbon::parse($this->date)->addMinutes(10)->lt(now());
     }
 
     public function isCancel()

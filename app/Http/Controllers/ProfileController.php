@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TransactionStatus;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,14 +16,19 @@ class ProfileController extends Controller
 
     public function index(Request $request)
     {
-        if ($request->filled('order_id')) {
-            $order = Transaction::query()
-                ->where('code', $request->order_id)
-                ->first();
-            if ($order) {
-                return redirect()->route('fe.transaction.detail', $order->code);
-            }
-        }
+        // if ($request->filled('order_id')) {
+        //     $trx = Transaction::query()
+        //         ->where('code', $request->order_id)
+        //         ->first();
+        //     if ($trx) {
+        //         if ($trx->isPending() && $trx->isExpired()) {
+        //             $trx->update([
+        //                 'status' => TransactionStatus::CANCEL
+        //             ]);
+        //         }
+        //         return redirect()->route('fe.transaction.detail', $trx->code);
+        //     }
+        // }
         $user = auth()->user();
         $transactions = $user->transactions()->simplePaginate(5);
         return view('frontend.profile', compact([
