@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,8 +13,16 @@ class ProfileController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->filled('order_id')) {
+            $order = Transaction::query()
+                ->where('code', $request->order_id)
+                ->first();
+            if ($order) {
+                return redirect()->route('fe.transaction.detail', $order->code);
+            }
+        }
         $user = auth()->user();
         $transactions = $user->transactions()->simplePaginate(5);
         return view('frontend.profile', compact([
