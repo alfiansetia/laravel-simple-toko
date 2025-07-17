@@ -89,7 +89,7 @@ class ProductResource extends Resource
                         true => 'Yes',
                         false => 'No',
                     ])
-                    ->default(null),
+                    ->default(true),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

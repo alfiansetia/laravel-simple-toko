@@ -116,7 +116,7 @@ class TransactionResource extends Resource
                         TransactionStatus::DONE->value => 'Selesai',
                         TransactionStatus::CANCEL->value => 'Dibatalkan',
                     ])
-                    ->default(null),
+                    ->default(TransactionStatus::PENDING->value),
             ])
             ->actions([
                 Action::make('Cancel')
