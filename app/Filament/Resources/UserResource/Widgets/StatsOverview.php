@@ -15,10 +15,10 @@ class StatsOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Total Users', User::query()
-                // ->where('role', Role::USER->value)
+            Stat::make('Total Customers', User::query()
+                ->where('role', Role::USER->value)
                 ->count())
-                ->description('All registered users')
+                ->description('All Registered Customers')
                 ->color('danger')
                 ->url(route('filament.admin.resources.users.index')),
             Stat::make('Total Products', Product::query()
