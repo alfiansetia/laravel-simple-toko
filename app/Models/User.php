@@ -46,7 +46,9 @@ class User extends Authenticatable implements FilamentUser
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
+            'role'              => Role::class,
+
         ];
     }
 
@@ -59,9 +61,13 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasMany(Cart::class);
     }
+    public function isAdmin(): bool
+    {
+        return $this->role == Role::ADMIN;
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->role == Role::ADMIN->value;
+        return $this->isAdmin();
     }
 }

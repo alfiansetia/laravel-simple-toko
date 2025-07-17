@@ -9,7 +9,7 @@ function hrg($angka)
 
 function role_admin($role)
 {
-    return $role == Role::ADMIN->value;
+    return $role == Role::ADMIN;
 }
 
 function wa_admin()
