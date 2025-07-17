@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Transaction;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -54,6 +55,7 @@ class WhatsappService
     {
         $trx->refresh();
         $trx->load('items');
+        $expired = Carbon::parse($trx->date)->addMinutes(10)->format('d-m-Y H:i:s');
         $message = '';
         $message .= config('app.name') . "\n";
         $message .= config('services.company_address') . "\n";
@@ -73,7 +75,7 @@ class WhatsappService
         $message .= "===================\n";
         if ($trx->isPending()) {
             $message .= "Link Pembayaran : " . $trx->payment_url . " \n";
-            $message .= "Link Pembayaran hanya berlaku 10 Menit! \n";
+            $message .= "Link Pembayaran berlaku (10 Menit) sampai : " . $expired . " \n";
         }
         $message .= "\n\n___Terima Kasih___\n";
         return $message;
