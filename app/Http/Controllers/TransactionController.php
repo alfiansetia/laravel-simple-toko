@@ -84,7 +84,11 @@ class TransactionController extends Controller
             }
 
             $transaction->save();
+            if ($transaction->isDone()) {
+                $transaction->sendNotifOrderToAdmin();
+            }
             $transaction->sendNotifOrderDoneToUSer();
+            $transaction->sendNotifOrderToAdmin();
 
             DB::commit();
 

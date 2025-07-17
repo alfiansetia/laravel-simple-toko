@@ -26,14 +26,20 @@ class MidtransService
         }
         $params = [
             'transaction_details' => [
-                'order_id' => $orderId,
-                'gross_amount' => $transaction->total,
+                'order_id'      => $orderId,
+                'gross_amount'  => $transaction->total,
             ],
-            'customer_details' => [
-                'first_name' => $transaction->user->name,
-                'phone' => $transaction->user->whatsapp,
+            'customer_details'  => [
+                'first_name'    => $transaction->user->name,
+                'phone'         => $transaction->user->whatsapp,
+                "notes"         => "Terima kasih sudah berbelanja, Silahkan ikuti panduan untuk melakukan pembayaran pesananan anda!."
             ],
             'item_details' => $items,
+            'expiry' => [
+                'unit'       => 'minute',
+                'duration'   => 10,
+            ],
+
         ];
         $midtrans = Snap::createTransaction($params);
         return $midtrans;

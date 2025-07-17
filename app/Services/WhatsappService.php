@@ -73,6 +73,7 @@ class WhatsappService
         $message .= "===================\n";
         if ($trx->isPending()) {
             $message .= "Link Pembayaran : " . $trx->payment_url . " \n";
+            $message .= "Link Pembayaran hanya berlaku 10 Menit! \n";
         }
         $message .= "\n\n___Terima Kasih___\n";
         return $message;

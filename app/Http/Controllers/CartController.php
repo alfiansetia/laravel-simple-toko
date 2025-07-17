@@ -102,7 +102,7 @@ class CartController extends Controller
                 $trx->update([
                     'payment_url' => $midtrans->redirect_url,
                 ]);
-                $trx->sendNotifOrderToAdmin();
+                // $trx->sendNotifOrderToAdmin();
                 $trx->sendNotifOrderToUser();
                 $user->carts()->delete();
                 DB::commit();
