@@ -77,6 +77,9 @@ class WhatsappService
             $message .= "Link Pembayaran : " . $trx->payment_url . " \n";
             $message .= "Link Pembayaran berlaku (10 Menit) sampai : " . $expired . " \n";
         }
+        if ($trx->isDone()) {
+            $message .= "Pembayaran Telah diterima! \n";
+        }
         $message .= "\n\n___Terima Kasih___\n";
         return $message;
     }
