@@ -16,19 +16,21 @@ class ProfileController extends Controller
 
     public function index(Request $request)
     {
-        // if ($request->filled('order_id')) {
-        //     $trx = Transaction::query()
-        //         ->where('code', $request->order_id)
-        //         ->first();
-        //     if ($trx) {
-        //         if ($trx->isPending() && $trx->isExpired()) {
-        //             $trx->update([
-        //                 'status' => TransactionStatus::CANCEL
-        //             ]);
-        //         }
-        //         return redirect()->route('fe.transaction.detail', $trx->code);
-        //     }
-        // }
+        if ($request->filled('order_id')) {
+            $trx = Transaction::query()
+                ->where('code', $request->order_id)
+                ->first();
+            if ($trx) {
+                if ($request->filled('transaction_status')) {
+                    if ($trx->isPending() && $trx->isExpired() && $request->transaction_status == 'expire') {
+                        $trx->update([
+                            'status' => TransactionStatus::CANCEL
+                        ]);
+                    }
+                }
+                return redirect()->route('fe.transaction.detail', $trx->code);
+            }
+        }
         $user = auth()->user();
         $transactions = $user->transactions()->simplePaginate(5);
         return view('frontend.profile', compact([
