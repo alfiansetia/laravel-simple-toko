@@ -37,7 +37,7 @@ class UserResource extends Resource
                 TextInput::make('whatsapp')
                     ->label('Whatsapp')
                     ->required()
-                    ->unique('users')
+                    ->unique('users', ignoreRecord: true)
                     ->maxLength(15),
                 Select::make('role')
                     ->label('Role')
